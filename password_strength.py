@@ -15,12 +15,12 @@ def input_from_file_or_manual(text):
 
     if not os.path.exists(work_file):
         print('Файл {} не существует'.format(work_file))
-        data = input('Введите данные через пробел:').split()
+        inputed_user_data = input('Введите данные через пробел:').split()
         print('='*80)
     else:
-        data = load_data(work_file)
+        inputed_user_data = load_data(work_file)
 
-    return data
+    return inputed_user_data
 
 
 def is_password_long(password):
@@ -40,9 +40,10 @@ def has_special_char(password):
 
 
 def has_forbidden_words(password, forbidden_words):
-    PATTERN_DD_MM_YYYY = "(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d"
-    PATTERN_MM_DD_YYYY = "(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d"
-    has_forbidden_words = bool(re.search(PATTERN_MM_DD_YYYY, password))
+    pattern_dd_mm_yyyy = "(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d"
+    pattern_mm_dd_yyyy = "(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d"
+    has_forbidden_words = bool(re.search(pattern_dd_mm_yyyy, password))
+    has_forbidden_words = bool(re.search(pattern_mm_dd_yyyy, password))
 
     if password in forbidden_words:
         has_forbidden_words = True
