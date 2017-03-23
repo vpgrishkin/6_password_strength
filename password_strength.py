@@ -1,5 +1,6 @@
 import re
 import os
+from getpass import getpass
 
 
 DEFAULT_MIN_PASSWORD_LENGTH = 6
@@ -68,8 +69,7 @@ def get_password_strength(password, forbidden_words):
 
 
 if __name__ == '__main__':
-    
-    password = input('Введите пароль:')
+    password = getpass("Введите пароль:")
     
     blacklist = input_from_file_or_manual('Введите имя файла черного списка:')
     personal_info = input_from_file_or_manual('Введите имя файла с персональной ифнормацией:')
